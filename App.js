@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import express from "express";
+import cors from "cors";  //Para que el frontend pueda llamar
+import infoRoutes from "./routes/info.routes.js";
+const app = express();
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+// Middlewares
+app.use(cors());  //Permite peticiones desde cualquier origen
+app.use(express.json());
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+// Rutas
+app.use(infoRoutes);
+
+// 404
+app.use((req, res) => {
+  res.status(404).json({ mensaje: "Ruta no registrada." });
 });
+
+export default app;
+
