@@ -3,7 +3,7 @@ import express from "express";
 
 import multer from "multer";
 
-import { registrarProducto } from "../controllers/producto.controller.js";
+import { registrarProducto } from "../Controllers/ProductoControllers";
 
 const router = express.Router();
 
