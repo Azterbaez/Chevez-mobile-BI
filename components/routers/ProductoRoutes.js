@@ -21,4 +21,6 @@ router.post(
   registrarProducto
 );
 
+
+
 export default router;
